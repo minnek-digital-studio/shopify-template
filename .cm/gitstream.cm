@@ -34,6 +34,37 @@ automations:
         args:
           label: 'safe-changes'
       - action: approve@v1
+  
+  approve_tiny_fix:
+    if:
+      - {{ is.one_file and is.one_line }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'tiny-fix'
+      - action: approve@v1
+      
+  jira_ticket:
+    if:
+      - {{ not (jira.ticket_in_title or jira.ticket_in_desc) }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "missing-jira"
+          color: '#F6443B'
+          
+  large_review:
+    if:
+      - {{ files | length >= 10 }}
+      - {{ branch | estimatedReviewTime >= 30 }}
+    run:
+      - action: set-required-approvals@v1
+        args:
+          approvals: 2
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR may require a significant amount of effort to review. Please consider dividing your PR up into multiple smaller contributions.
 
 calc:
   etr: {{ branch | estimatedReviewTime }}
@@ -41,3 +72,8 @@ is:
   formatting: {{ source.diff.files | isFormattingChange }}
   docs: {{ files | allDocs }}
   tests: {{ files | allTests }}
+  one_file: {{ files | length == 1 }}
+  one_line: {{ branch.diff.size <= 2 }}
+jira:
+  ticket_in_title: {{ pr.title | includes(regex=r/^\[?\w{3,4}-\d{1,6}\]?(\s|-|_).{1,}$/) }}
+  ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
