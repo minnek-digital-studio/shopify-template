@@ -1,6 +1,6 @@
 #### Issue Info
 
-[![Jira](https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=Jira&logoColor=white)](https://minnek.atlassian.net/browse/{JIRA-ID})
+[![Jira](https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=Jira&logoColor=white)](https://minnek.atlassian.net/browse/${ticket})
 
 ### Code Review Checklist for Authors
 
