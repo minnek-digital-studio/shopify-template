@@ -1,0 +1,5 @@
+$base-font-size: 14px;
+
+@function remCalc($value) {
+    @return calc($value / $base-font-size * 1rem);
+}

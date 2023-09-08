@@ -4,7 +4,11 @@
   "description": "Shopify Boilerplate Template based on Dawn",
   "scripts": {
     "test": "shopify ",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "dev:vite": "nodemon --watch 'src/**/*' -e ts,scss --exec \"npm run build:vite\"",
+    "dev": "npm-run-all --parallel dev:*",
+    "build:vite": "vite build",
+    "build": "npm-run-all --parallel build:*"
   },
   "keywords": [
     "shopify"
@@ -14,6 +18,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.2.0",
     "@commitlint/config-conventional": "^17.2.0",
+    "@shopify/themekit": "^1.1.9",
     "cypress": "^10.11.0",
     "eslint": "^8.26.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -22,6 +27,8 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.1",
+    "nodemon": "^3.0.1",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
     "sass": "^1.55.0",
     "stylelint-config-prettier": "^9.0.3",
@@ -29,7 +36,8 @@
     "stylelint-config-standard": "^29.0.0",
     "stylelint-config-standard-scss": "^6.0.0",
     "stylelint-scss": "^4.3.0",
-    "vite": "^3.2.2",
-    "vite-plugin-singlefile": "^0.12.3"
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9",
+    "vite-plugin-sass-dts": "^1.3.9"
   }
 }
