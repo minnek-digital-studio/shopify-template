@@ -18,3 +18,4 @@ yarn.lock
 cypress/videos/
 cypress/screenshots/
 lighthouse-report.html
+assets/ysw-*.min.*
