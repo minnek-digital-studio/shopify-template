@@ -1,4 +1,4 @@
-# Javascript Guidelines
+# Typescript Guidelines
 
 Let's keep all the JS assets to this path.
 
@@ -6,7 +6,7 @@ Let's keep all the JS assets to this path.
 
 Use `PascalCase` for classes.
 
-```js
+```ts
 class YswProduct {
     constructor() {}
 }
@@ -20,7 +20,7 @@ class YswGlobal {
 
 Use `camelCase` for functions, variables methods and others.
 
-```js
+```ts
 function getProduct() {}
 
 const productPrice = () => {}

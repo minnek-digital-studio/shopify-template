@@ -27,7 +27,7 @@ All classes associated with the design system are prefixed with a global namespa
 `is-` and `has-` for specific states, such as `.ysw-is-active` or `.ysw-is-disabled`. These state-based classes would apply to.
 `js-` for targeting JavaScript-specific functionality, such as `.js-modal-trigger`. No styles are bound to these classes; they’re reserved for behavior only. For most cases, these `js-` classes would toggle state-based classes to an element.
 
-## BEM syntax
+## BEM syntax>
 
 `Block` is the primary component block, such as `.ysw-c-card` or `.ysw-c-btn`.
 `Element` is a child of the primary block, such as `.ysw-c-card__title`.
