@@ -1,43 +1,43 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { defineConfig } from 'vite';
 import path from 'path';
 import fs from 'fs';
 
 function generateEntryPoints() {
-  const entryPoints = {};
-  const srcDir = './src';
-  const modulesDir = './src/modules';
+    const entryPoints = {};
+    const layoutDir = './src/modules/layout';
+    const sassDir = './src/sass';
 
-  const files = fs.readdirSync(srcDir);
-  const tsFiles = files.filter((file) => file.endsWith('.ts'));
+    if (fs.existsSync(layoutDir)) {
+        const layoutFiles = fs.readdirSync(layoutDir).filter((file) => file.endsWith('.ts'));
 
-  if (fs.existsSync(modulesDir)) {
-    const moduleFiles = fs.readdirSync(modulesDir).filter((file) => file.endsWith('.ts'));
+        layoutFiles.forEach((file) => {
+            const fileName = path.basename(file, '.ts');
+            entryPoints[`layout-${fileName}`] = path.resolve(layoutDir, file);
+        });
+    }
 
-    moduleFiles.forEach((file) => {
-      const fileName = path.basename(file, '.ts');
-      entryPoints[fileName] = path.resolve(modulesDir, file);
-    });
-  }
+    if (fs.existsSync(sassDir)) {
+        const mainCssPath = './src/sass/index.scss';
 
-  tsFiles.forEach((file) => {
-    const fileName = path.basename(file, '.ts');
-    entryPoints[fileName] = path.resolve(srcDir, file);
-  });
+        entryPoints.main = path.resolve(mainCssPath);
+    }
 
-  return entryPoints;
+    return entryPoints;
 }
 
 export default defineConfig({
-  build: {
-    outDir: './assets',
-    assetsDir: '',
-    rollupOptions: {
-      input: generateEntryPoints(),
-      output: {
-        entryFileNames: 'ysw-[name].min.js',
-        assetFileNames: 'ysw-[name].min.[ext]',
-      },
+    build: {
+        outDir: './assets',
+        assetsDir: '',
+        rollupOptions: {
+            input: generateEntryPoints(),
+            output: {
+                entryFileNames: 'ysw-[name].min.js',
+                assetFileNames: 'ysw-[name].min.[ext]',
+                chunkFileNames: 'ysw-[name]-[hash].min.js',
+            },
+        },
+        emptyOutDir: false,
     },
-    emptyOutDir: false,
-  },
 });

@@ -3,15 +3,19 @@
   "version": "1.0.0",
   "description": "Shopify Boilerplate Template based on Dawn",
   "scripts": {
-    "test": "shopify ",
+    "dev:theme": "shopify theme dev -e env",
+    "test": "shopify",
     "cy:open": "cypress open",
     "dev:vite": "nodemon --watch 'src/**/*' -e ts,scss --exec \"npm run build:vite\"",
-    "dev": "npm-run-all --parallel dev:*",
+    "dev": "npm run pull && npm run start:dev",
+    "start:dev": "npm-run-all --parallel dev:*",
+    "pull": "shopify theme pull -e env",
     "build:vite": "vite build",
     "build": "npm-run-all --parallel build:*",
     "postinstall": "npx husky install",
     "stylelint": "npx stylelint **/*.scss",
-    "stylelint:fix": "npx stylelint --fix **/*.scss"
+    "stylelint:fix": "npx stylelint --fix **/*.scss",
+    "release": "release-it"
   },
   "keywords": [
     "shopify"

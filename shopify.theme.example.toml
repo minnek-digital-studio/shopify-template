@@ -1,0 +1,4 @@
+[environments.env]
+theme = "<theme_id>"
+store = "<store_url>"
+password  = "<access_token>"
