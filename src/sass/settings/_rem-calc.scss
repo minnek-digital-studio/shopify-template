@@ -1,0 +1,10 @@
+$base-font-size: 10px;
+$ysw-base-font-size-xsm: 12px;
+$ysw-base-font-size-sm: 14px;
+$ysw-base-font-size-md: 16px;
+$ysw-base-font-size-xmd: 25px;
+$ysw-base-font-size-lg: 40px;
+
+@function rem-calc($value) {
+    @return calc($value / $base-font-size * 1rem);
+}

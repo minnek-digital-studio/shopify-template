@@ -4,6 +4,7 @@ Let's keep all the CSS assets to this path.
 
 If you want to add new CSS section, create the new file and be sure to add it to the list of folders in this path.
 
+- `settings` global settings, variables and colors.
 - `sections` larger modules that can be used in multiple places.
 - `snippets` small pieces of reusable code that can be used in multiple places.
 - `utilities` helper utility classes.
